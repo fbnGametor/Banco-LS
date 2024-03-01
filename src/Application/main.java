@@ -1,24 +1,22 @@
-// Objetivo: fazer com que o accountNumber acrescente a cada objeto conta criada.
+// Objetivo 1: fazer com que o accountNumber acrescente a cada objeto conta criada.
+// Objetivo 2: mudar o metodo transfer da SavingsAccount.
 
 package Application;
 
-import Entities.Account;
+import Entities.SavingsAccount;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Random;
-
 
 public class main {
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        Random random = new Random();
 
         int accountNumber = 1;
-        List<Account> accountList = new ArrayList<>();
+        List<SavingsAccount> accountList = new ArrayList<>();
 
         // Pegando dados do usuario
         System.out.println("Register your account!");
@@ -29,10 +27,12 @@ public class main {
         System.out.print("Password: ");
         String password = sc.next();
 
-        Account newAccount = new Account(username, cpf, 0, password, accountNumber);
+        SavingsAccount newAccount = new SavingsAccount(username, cpf, 0, password, accountNumber);
         accountList.add(newAccount);
 
-        for (Account acc: accountList) {
+        SavingsAccount newAccount2 = new SavingsAccount(username, cpf, 0, password, accountNumber);
+
+        for (SavingsAccount acc: accountList) {
             accountNumber++;
         }
 
@@ -41,6 +41,15 @@ public class main {
         System.out.println("Password: " + newAccount.get_passWord());
         System.out.println("Your balance: " + newAccount.get_balance());
         System.out.println("Your account number: " + newAccount.get_accountNumber());
+
+        System.out.println("Your balance: " + newAccount.get_balance());
+        System.out.println("Your balance: " + newAccount2.get_balance());
+
+        newAccount.deposit(300);
+        newAccount.transfer(newAccount2,200.0);
+
+        System.out.println("Your balance: " + newAccount.get_balance());
+        System.out.println("Your balance: " + newAccount2.get_balance());
 
         sc.close();
     }

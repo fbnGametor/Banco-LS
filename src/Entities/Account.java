@@ -1,52 +1,59 @@
 package Entities;
 
-public class Account {
+abstract class Account {
 
-    private int _accountNumber;
-    private String _userName;
-    private String _cpf;
-    private double _balance;
-    private String _passWord;
+    private int accountNumber;
+    private String userName;
+    private String cpf;
+    private double balance;
+    private String passWord;
 
-    public Account(String _userName, String _cpf, double _balance, String _passWord, int _accountNumber) {
-        this._userName = _userName;
-        this._cpf = _cpf;
-        this._balance = _balance;
-        this._passWord = _passWord;
-        this._accountNumber = _accountNumber;
+    public Account(String userName, String cpf, double balance, String passWord, int accountNumber) {
+        this.userName = userName;
+        this.cpf = cpf;
+        this.balance = balance;
+        this.passWord = passWord;
+        this.accountNumber = accountNumber;
     }
 
     public int get_accountNumber() {
-        return _accountNumber;
+        return accountNumber;
     }
 
     public String get_cpf() {
-        return _cpf;
+        return cpf;
     }
 
     public double get_balance() {
-        return _balance;
+        return balance;
     }
 
     public String get_userName() {
-        return _userName;
+        return userName;
     }
 
     public String get_passWord() {
-        return _passWord;
+        return passWord;
     }
 
     public void deposit(double ammount) {
-        _balance += ammount;
+        balance += ammount;
     }
 
     public void withdraw(double ammount) {
-        _balance -= ammount;
+        balance -= ammount;
     }
 
-    public void transfer(Account account, Double ammount) {
-        _balance -= ammount;
-        account.deposit(ammount);
+    public String transfer(Account account, Double ammount) {
+        //verificando se o valor eh menor que o saldo da conta
+        if(ammount <= balance) {
+            balance -= ammount;
+            account.deposit(ammount);
+            return "Your transfer was successful";
+        } else {
+            return "Your transfer has exceeded the balance limit";
+        }
     }
 
+    abstract String transfer(Account account, double ammount);
 }
