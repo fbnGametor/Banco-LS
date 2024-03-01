@@ -8,10 +8,4 @@ public class SavingsAccount extends Account {
         super(userName, cpf, balance, passWord, accountNumber);
 
     }
-
-    @Overrideg transfer(Account account, double ammount) {
-        return nul
-    Strinl;
-    }
-
 }

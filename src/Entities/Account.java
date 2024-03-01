@@ -54,6 +54,4 @@ abstract class Account {
             return "Your transfer has exceeded the balance limit";
         }
     }
-
-    abstract String transfer(Account account, double ammount);
 }
