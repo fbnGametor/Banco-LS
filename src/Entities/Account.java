@@ -1,12 +1,12 @@
 package Entities;
 
-abstract class Account {
+public abstract class Account {
 
-    private int accountNumber;
-    private String userName;
-    private String cpf;
-    private double balance;
-    private String passWord;
+    public int accountNumber;
+    public String userName;
+    public String cpf;
+    public double balance;
+    public String passWord;
 
     public Account(String userName, String cpf, double balance, String passWord, int accountNumber) {
         this.userName = userName;
@@ -40,18 +40,22 @@ abstract class Account {
         balance += ammount;
     }
 
-    public void withdraw(double ammount) {
-        balance -= ammount;
+    public abstract void withdraw(double ammount);
+
+    public abstract void transfer(Account account, Double ammount);
+
+    public String toString() {
+        return "Username: "
+                + userName
+                + ", CPF: "
+                + cpf
+                + ", Balance: "
+                + String.format("%.2f", balance)
+                + ", Password: "
+                + passWord
+                + ", Account number: "
+                + accountNumber;
     }
 
-    public String transfer(Account account, Double ammount) {
-        //verificando se o valor eh menor que o saldo da conta
-        if(ammount <= balance) {
-            balance -= ammount;
-            account.deposit(ammount);
-            return "Your transfer was successful";
-        } else {
-            return "Your transfer has exceeded the balance limit";
-        }
-    }
+
 }

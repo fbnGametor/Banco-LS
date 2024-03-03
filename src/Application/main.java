@@ -3,6 +3,7 @@
 
 package Application;
 
+import Entities.Account;
 import Entities.SavingsAccount;
 
 import java.util.ArrayList;
@@ -47,6 +48,11 @@ public class main {
 
         newAccount.deposit(300);
         newAccount.transfer(newAccount2,200.0);
+
+        System.out.println("Your balance: " + newAccount.get_balance());
+        System.out.println("Your balance: " + newAccount2.get_balance());
+
+        newAccount2.withdraw(150);
 
         System.out.println("Your balance: " + newAccount.get_balance());
         System.out.println("Your balance: " + newAccount2.get_balance());
