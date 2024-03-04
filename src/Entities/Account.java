@@ -2,11 +2,11 @@ package Entities;
 
 public abstract class Account {
 
-    public int accountNumber;
-    public String userName;
-    public String cpf;
-    public double balance;
-    public String passWord;
+    protected final int accountNumber;
+    protected String userName;
+    protected final String cpf;
+    protected double balance;
+    protected String passWord;
 
     public Account(String userName, String cpf, double balance, String passWord, int accountNumber) {
         this.userName = userName;
@@ -40,9 +40,18 @@ public abstract class Account {
         balance += ammount;
     }
 
-    public abstract void withdraw(double ammount);
+    public void withdraw(double ammount) {
+        if(ammount <= balance) {
+            balance -= ammount;
+        }
+    }
 
-    public abstract void transfer(Account account, Double ammount);
+    public void transfer(Account account, Double ammount) {
+        if(ammount <= balance) {
+            balance -= ammount;
+            account.deposit(ammount);
+        }
+    }
 
     public String toString() {
         return "Username: "

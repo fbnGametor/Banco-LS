@@ -19,10 +19,7 @@ public class CheckingAccount extends Account {
     @Override
     public void transfer(Account account, Double ammount) {
         if(ammount <= 1000) {
-            if(ammount <= get_balance()) {
-                this.withdraw(ammount);
-                account.deposit(ammount);
-            }
+            account.deposit(ammount);
         }
     }
 }

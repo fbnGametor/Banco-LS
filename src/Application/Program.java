@@ -3,21 +3,17 @@
 
 package Application;
 
-import Entities.Account;
 import Entities.SavingsAccount;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-public class main {
+public class Program {
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
         int accountNumber = 1;
-        List<SavingsAccount> accountList = new ArrayList<>();
 
         // Pegando dados do usuario
         System.out.println("Register your account!");
@@ -28,34 +24,22 @@ public class main {
         System.out.print("Password: ");
         String password = sc.next();
 
+        //Instanciando novas contas com os dados obtidos
         SavingsAccount newAccount = new SavingsAccount(username, cpf, 0, password, accountNumber);
-        accountList.add(newAccount);
-
         SavingsAccount newAccount2 = new SavingsAccount(username, cpf, 0, password, accountNumber);
 
-        for (SavingsAccount acc: accountList) {
-            accountNumber++;
-        }
-
-        System.out.println("Username: " + newAccount.get_userName());
-        System.out.println("CPF: " + newAccount.get_cpf());
-        System.out.println("Password: " + newAccount.get_passWord());
-        System.out.println("Your balance: " + newAccount.get_balance());
-        System.out.println("Your account number: " + newAccount.get_accountNumber());
-
-        System.out.println("Your balance: " + newAccount.get_balance());
-        System.out.println("Your balance: " + newAccount2.get_balance());
+        System.out.println(newAccount);
 
         newAccount.deposit(300);
+        System.out.println("Your balance: " + newAccount.get_balance());
+        System.out.println("Your balance: " + newAccount2.get_balance());
+
         newAccount.transfer(newAccount2,200.0);
-
         System.out.println("Your balance: " + newAccount.get_balance());
         System.out.println("Your balance: " + newAccount2.get_balance());
 
-        newAccount2.withdraw(150);
 
-        System.out.println("Your balance: " + newAccount.get_balance());
-        System.out.println("Your balance: " + newAccount2.get_balance());
+
 
         sc.close();
     }

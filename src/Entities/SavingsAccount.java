@@ -9,19 +9,15 @@ public class SavingsAccount extends Account {
     @Override
     public void withdraw(double ammount) {
         if(ammount <= 300) {
-            if(ammount <= balance) {
-                balance -= ammount;
-            }
+            balance -= ammount;
         }
     }
 
     @Override
     public void transfer(Account account, Double ammount) {
         if (ammount <= 1000) {
-            if (ammount <= get_balance()) {
-                this.withdraw(ammount);
-                account.deposit(ammount);
-            }
+            balance -= ammount;
+            account.deposit(ammount);
         }
     }
 }
