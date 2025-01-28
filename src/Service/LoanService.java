@@ -18,7 +18,7 @@ public class LoanService {
 
     public String loan(double amount, int installmentQuantity) {
         if(loanAllowed(account)) {
-            installment = amount / installmentQuantity + taxService.tax(amount);
+            installment = (amount + taxService.tax(amount)) / installmentQuantity;
             account.deposit(amount);
             return "The deposit was successfully executed in the amount of $" + String.format("%.2f", amount)
                     + "with" + installmentQuantity + " installments of $" + String.format("%.2f", installment);
